@@ -32,10 +32,8 @@ using std::complex;
 using std::size_t;
 using std::vector;
 
-
 // Private function prototypes
 static size_t reverseBits(size_t x, int n);
-
 
 void Fft::transform(vector<complex<double> > &vec) {
 	size_t n = vec.size();
@@ -47,7 +45,6 @@ void Fft::transform(vector<complex<double> > &vec) {
 		transformBluestein(vec);
 }
 
-
 void Fft::inverseTransform(vector<complex<double> > &vec) {
 	std::transform(vec.cbegin(), vec.cend(), vec.begin(),
 		static_cast<complex<double> (*)(const complex<double> &)>(std::conj));
@@ -55,7 +52,6 @@ void Fft::inverseTransform(vector<complex<double> > &vec) {
 	std::transform(vec.cbegin(), vec.cend(), vec.begin(),
 		static_cast<complex<double> (*)(const complex<double> &)>(std::conj));
 }
-
 
 void Fft::transformRadix2(vector<complex<double> > &vec) {
 	// Length variables
@@ -94,7 +90,6 @@ void Fft::transformRadix2(vector<complex<double> > &vec) {
 	}
 }
 
-
 void Fft::transformBluestein(vector<complex<double> > &vec) {
 	// Find a power-of-2 convolution length m such that m >= n * 2 + 1
 	size_t n = vec.size();
@@ -132,7 +127,6 @@ void Fft::transformBluestein(vector<complex<double> > &vec) {
 		vec[i] = cv[i] * expTable[i];
 }
 
-
 void Fft::convolve(
 		const vector<complex<double> > &xvec,
 		const vector<complex<double> > &yvec,
@@ -151,7 +145,6 @@ void Fft::convolve(
 	for (size_t i = 0; i < n; i++)  // Scaling (because this FFT implementation omits it)
 		outvec[i] = xv[i] / static_cast<double>(n);
 }
-
 
 static size_t reverseBits(size_t x, int n) {
 	size_t result = 0;
